@@ -2,3 +2,7 @@ include ':app'
 rootProject.name = "optimize"
 //include ':buildSrc'
 include ':processorTest'
+include ':modulea'
+include ':moduleb'
+include ':test'
+include ':javalib'

@@ -6,6 +6,8 @@ import android.os.Bundle;
 
 import com.example.optimize.aspectj.MethodTrace;
 
+import annotationtest.AnnotationTest;
+
 public class MainActivity2 extends AppCompatActivity {
 
     @Override
@@ -13,6 +15,8 @@ public class MainActivity2 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
         test();
+
+        AnnotationTest annotationTest = new AnnotationTest();
     }
 
 

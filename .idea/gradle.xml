@@ -13,6 +13,11 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
+            <option value="$PROJECT_DIR$/javalib" />
+            <option value="$PROJECT_DIR$/modulea" />
+            <option value="$PROJECT_DIR$/moduleb" />
+            <option value="$PROJECT_DIR$/processorTest" />
+            <option value="$PROJECT_DIR$/test" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

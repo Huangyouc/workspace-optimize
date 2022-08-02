@@ -31,12 +31,6 @@ android {
     }
 }
 
-
-java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
-}
-
 dependencies {
 
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -48,6 +42,7 @@ dependencies {
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
+    implementation project(":processorTest")
     kapt 'com.google.auto.service:auto-service:1.0'
-    annotationProcessor 'com.google.auto.service:auto-service:1.0'
+    compileOnly 'com.google.auto.service:auto-service:1.0'
 }

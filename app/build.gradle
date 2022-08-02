@@ -37,5 +37,8 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation 'org.aspectj:aspectjrt:1.8.9'
+
+    implementation project(":javalib")
+    annotationProcessor project(":javalib")
 }
 apply plugin: 'tinypng'
