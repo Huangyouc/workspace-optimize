@@ -1,4 +1,4 @@
-package com.example.javalib;
+package com.example.javalib.a;
 
 import com.google.auto.service.AutoService;
 
@@ -16,7 +16,7 @@ import javax.lang.model.element.TypeElement;
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedAnnotationTypes({DemoProcessor.DEMO_ANNOTATION})
 public class DemoProcessor extends AbstractProcessor{
-    static final String DEMO_ANNOTATION = "com.example.javalib.DemoAnnotation";
+    static final String DEMO_ANNOTATION = "com.example.javalib.a.DemoAnnotation";
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         return new DemoAnnotationProcessor().process(annotations,roundEnv,processingEnv);

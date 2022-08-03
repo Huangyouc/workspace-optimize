@@ -1,6 +1,6 @@
-package com.example.javalib
+package com.example.javalib.a
 
-import com.example.javalib.DemoProcessor.DEMO_ANNOTATION
+import com.example.javalib.a.DemoProcessor.DEMO_ANNOTATION
 import java.io.IOException
 import javax.annotation.processing.ProcessingEnvironment
 import javax.annotation.processing.RoundEnvironment
