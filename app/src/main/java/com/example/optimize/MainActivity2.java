@@ -3,7 +3,9 @@ package com.example.optimize;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
+import com.example.javalib.generated.GeneratedClassAnnotationTest;
 import com.example.optimize.aspectj.MethodTrace;
 
 import annotationtest.AnnotationTest;
@@ -16,7 +18,9 @@ public class MainActivity2 extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         test();
 
-        AnnotationTest annotationTest = new AnnotationTest();
+        //通过GeneratedClassAnnotationTest来代理AnnotationTest的生成
+        AnnotationTest annotationTest = new GeneratedClassAnnotationTest().getInstance();
+        Toast.makeText(this, "annotationtest成功", Toast.LENGTH_SHORT).show();
     }
 
 

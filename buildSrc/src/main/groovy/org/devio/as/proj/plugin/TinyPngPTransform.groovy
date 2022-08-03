@@ -111,9 +111,9 @@ class TinyPngPTransform extends Transform {
                 def filePath = file.absolutePath
                 ///Users/timian/Desktop/AndroidArchitect/AndroidArchitect/ASProj/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/org/devio/as/proj/main/degrade/DegradeGlobalActivity.class
                 println("handleDirectory file path:" + filePath)
-                if (shouldModifyClass2(filePath)) {
+                if (shouldModifyClass(filePath)) {
                     def inputStream = new FileInputStream(file)
-                    def ctClass = modifyClass2(inputStream)
+                    def ctClass = modifyClass(inputStream)
                     ctClass.writeFile(dir.name)
                     ctClass.detach()
                 }
@@ -141,14 +141,14 @@ class TinyPngPTransform extends Transform {
             println("inputJarEntryName: " + inputJarEntryName)
 
             def inputStream = inputJarFile.getInputStream(inputJarEntry)
-            if (!shouldModifyClass2(inputJarEntryName)) {
+            if (!shouldModifyClass(inputJarEntryName)) {
                 jarOutputStream.write(IOUtils.toByteArray(inputStream))
                 inputStream.close()
                 continue
             }
 
-            def ctClass = modifyClass2(inputStream)
-//            def ctClass = modifyClass(inputStream)
+//            def ctClass = modifyClass2(inputStream)
+            def ctClass = modifyClass(inputStream)
             def byteCode = ctClass.toBytecode()
             ctClass.detach()
             inputStream.close()

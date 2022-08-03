@@ -1,8 +1,11 @@
 package com.example.optimize
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import annotationtest.AnnotationTest
 import com.example.optimize.aspectj.MethodTrace
 import com.example.optimize.fps.FpsMonitor
 
@@ -14,6 +17,10 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.helle).setOnClickListener {
             FpsMonitor.toggle()
+        }
+
+        findViewById<TextView>(R.id.annotation_test).setOnClickListener {
+             startActivity(Intent(this@MainActivity,MainActivity2::class.java))
         }
     }
 
