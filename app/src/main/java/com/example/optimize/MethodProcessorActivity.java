@@ -3,10 +3,12 @@ package com.example.optimize;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
-//import com.example.javalib.b.MethodProcessor;
+import com.example.javalib.HycTest;
+import com.example.javalib.b.MethodProcessor;
 
-//@MethodProcessor(name = "Hyc")
+@MethodProcessor(name = "Hyc")
 public class MethodProcessorActivity extends AppCompatActivity {
 
     @Override
@@ -14,6 +16,7 @@ public class MethodProcessorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_method_processor);
 
+        Toast.makeText(this,new HycTest().getMessage(),Toast.LENGTH_SHORT).show();
 
     }
 }

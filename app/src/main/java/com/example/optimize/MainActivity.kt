@@ -22,6 +22,10 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.annotation).setOnClickListener {
              startActivity(Intent(this@MainActivity,MainActivity2::class.java))
         }
+
+        findViewById<TextView>(R.id.annotation2).setOnClickListener {
+            startActivity(Intent(this@MainActivity,MethodProcessorActivity::class.java))
+        }
     }
 
     @MethodTrace
