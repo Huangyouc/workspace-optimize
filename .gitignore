@@ -12,3 +12,8 @@
 /captures
 .externalNativeBuild
 .cxx
+/javalib/build/
+/processorTest/build/
+/.idea/
+/buildSrc/build/
+/.idea/codeStyles/
