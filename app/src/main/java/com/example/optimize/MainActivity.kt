@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
             FpsMonitor.toggle()
         }
 
-        findViewById<TextView>(R.id.annotation_test).setOnClickListener {
+        findViewById<TextView>(R.id.annotation).setOnClickListener {
              startActivity(Intent(this@MainActivity,MainActivity2::class.java))
         }
     }

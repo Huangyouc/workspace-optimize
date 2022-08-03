@@ -17,3 +17,5 @@
 /.idea/
 /buildSrc/build/
 /.idea/codeStyles/
+/modulea/build/
+/moduleb/build/
