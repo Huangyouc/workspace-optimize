@@ -38,9 +38,9 @@ dependencies {
 
     implementation 'org.aspectj:aspectjrt:1.8.9'
 
-    implementation project(':processor')
+    implementation project(':annotation')
 
-    implementation project(":javalib")
-    annotationProcessor project(":javalib")
+    implementation project(':processor')
+    annotationProcessor project(':processor')
 }
 apply plugin: 'tinypng'

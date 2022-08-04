@@ -4,5 +4,5 @@ rootProject.name = "optimize"
 include ':modulea'
 include ':moduleb'
 include ':test'
-include ':javalib'
 include ':processor'
+include ':annotation'
