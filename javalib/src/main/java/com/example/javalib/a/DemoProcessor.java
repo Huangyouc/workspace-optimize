@@ -16,7 +16,7 @@ import javax.lang.model.element.TypeElement;
 @SupportedSourceVersion(SourceVersion.RELEASE_8)
 @SupportedAnnotationTypes({DemoProcessor.DEMO_ANNOTATION})
 public class DemoProcessor extends AbstractProcessor{
-    static final String DEMO_ANNOTATION = "com.example.javalib.a.DemoAnnotation";
+    static final String DEMO_ANNOTATION = "com.example.processor.DemoAnnotation";
     @Override
     public boolean process(Set<? extends TypeElement> annotations, RoundEnvironment roundEnv) {
         return new DemoAnnotationProcessor().process(annotations,roundEnv,processingEnv);

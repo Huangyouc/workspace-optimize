@@ -38,6 +38,8 @@ dependencies {
 
     implementation 'org.aspectj:aspectjrt:1.8.9'
 
+    implementation project(':processor')
+
     implementation project(":javalib")
     annotationProcessor project(":javalib")
 }

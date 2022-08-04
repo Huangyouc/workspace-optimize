@@ -1,6 +1,6 @@
 package com.example.modulea;
 
-import com.example.processortest.Display;
+import com.example.processor.Display;
 import com.google.auto.service.AutoService;
 
 @AutoService(Display.class)

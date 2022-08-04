@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.widget.Toast;
 
 import com.example.javalib.HycTest;
-import com.example.javalib.b.MethodProcessor;
+import com.example.processor.MethodProcessor;
 
 @MethodProcessor(name = "Hyc")
 public class MethodProcessorActivity extends AppCompatActivity {

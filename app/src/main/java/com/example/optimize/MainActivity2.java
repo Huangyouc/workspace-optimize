@@ -16,7 +16,7 @@ public class MainActivity2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main2);
-        test();
+//        test();
 
         //通过GeneratedClassAnnotationTest来代理AnnotationTest的生成
         AnnotationTest annotationTest = new GeneratedClassAnnotationTest().getInstance();

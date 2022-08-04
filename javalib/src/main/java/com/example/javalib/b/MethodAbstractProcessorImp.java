@@ -1,5 +1,6 @@
 package com.example.javalib.b;
 
+import com.example.processor.MethodProcessor;
 import com.google.auto.service.AutoService;
 
 import java.io.IOException;

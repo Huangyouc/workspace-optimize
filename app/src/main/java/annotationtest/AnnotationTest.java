@@ -1,7 +1,7 @@
 package annotationtest;
 
 
-import com.example.javalib.a.DemoAnnotation;
+import com.example.processor.DemoAnnotation;
 
 public class AnnotationTest {
     @DemoAnnotation
