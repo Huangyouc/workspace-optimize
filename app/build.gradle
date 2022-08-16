@@ -24,6 +24,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+        encoding "UTF-8"
+    }
+
+    aspectjx {
+        exclude "module-info",'com.google',
+                'com.squareup',
+                'com.alipay',
+                'com.taobao',
+                'org.apache',
+                'com.noahwm.crm'
+    }
 }
 
 dependencies {
@@ -37,6 +52,7 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     implementation 'org.aspectj:aspectjrt:1.8.9'
+    implementation 'com.squareup.okhttp3:okhttp:3.14.3'
 
     implementation project(':annotation')
 
