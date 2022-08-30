@@ -81,8 +81,8 @@ public class ProxyInfo2 {
         TypeSpec typeSpec = TypeSpec.classBuilder(proxyClassName)
                 .addModifiers(Modifier.PUBLIC)
                 .addSuperinterface(parameterizedTypeName)//实现接口
-                .addField(className,"target")
-                .addMethod(constructorBuilder.build())//添加构造方法
+//                .addField(className,"target")
+//                .addMethod(constructorBuilder.build())//添加构造方法
                 .addMethod(bindMethodSpec)//添加类中的方法
                 .build();
 
