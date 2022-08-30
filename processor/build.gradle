@@ -14,5 +14,6 @@ dependencies {
     implementation project(':annotation')
     kapt 'com.google.auto.service:auto-service:1.0'
      compileOnly 'com.google.auto.service:auto-service:1.0'
-
+    //快速生成.java文件的库
+    implementation 'com.squareup:javapoet:1.8.0'
 }

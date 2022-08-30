@@ -11,9 +11,10 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/annotation" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/buildSrc" />
-            <option value="$PROJECT_DIR$/javalib" />
+            <option value="$PROJECT_DIR$/inject" />
             <option value="$PROJECT_DIR$/modulea" />
             <option value="$PROJECT_DIR$/moduleb" />
             <option value="$PROJECT_DIR$/processor" />
