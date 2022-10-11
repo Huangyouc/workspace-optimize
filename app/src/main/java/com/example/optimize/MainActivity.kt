@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import annotationtest.AnnotationTest
 import com.example.optimize.aspectj.MethodTrace
 import com.example.optimize.fps.FpsMonitor
+import ui.ScreenOrientationActivity
 
 class MainActivity : AppCompatActivity() {
     @MethodTrace
@@ -15,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        findViewById<TextView>(R.id.helle).setOnClickListener {
+        findViewById<TextView>(R.id.helle_tv).setOnClickListener {
             FpsMonitor.toggle()
         }
 
@@ -26,6 +27,14 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.annotation2).setOnClickListener {
             startActivity(Intent(this@MainActivity,MethodProcessorActivity::class.java))
         }
+        findViewById<TextView>(R.id.webview).setOnClickListener {
+            startActivity(Intent(this@MainActivity,WebActivity::class.java))
+        }
+
+        findViewById<TextView>(R.id.orientation).setOnClickListener {
+            startActivity(Intent(this@MainActivity,ScreenOrientationActivity::class.java))
+        }
+
     }
 
     @MethodTrace
