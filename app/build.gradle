@@ -37,8 +37,8 @@ android {
                 'com.alipay',
                 'com.taobao',
                 'org.apache',
-                'com.noahwm.crm',
-                'com.example.optimize'
+                'com.noahwm.crm'
+//                'com.example.optimize'
     }
 
     configurations.all {resolutionStrategy { force 'androidx.core:core-ktx:1.1.0' }}
