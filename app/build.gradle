@@ -41,7 +41,12 @@ android {
 //                'com.example.optimize'
     }
 
+    packagingOptions{
+        exclude 'META-INF/com.android.tools/proguard/coroutines.pro'
+    }
+
     configurations.all {resolutionStrategy { force 'androidx.core:core-ktx:1.1.0' }}
+    configurations.all {resolutionStrategy { force "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version" }}
 }
 
 dependencies {
@@ -55,10 +60,10 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
     implementation 'org.aspectj:aspectjrt:1.8.9'
     implementation 'com.squareup.okhttp3:okhttp:3.14.3'
 
+    implementation project(':module_base')
     implementation project(':annotation')
     implementation project(':inject')
 

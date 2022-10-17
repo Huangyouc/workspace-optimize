@@ -6,8 +6,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import annotationtest.AnnotationTest
+import com.example.module_base.sputil.SpUtil
 import com.example.optimize.aspectj.MethodTrace
 import com.example.optimize.fps.FpsMonitor
+import kotlinx.android.synthetic.main.activity_main.*
 import ui.ScreenOrientationActivity
 
 class MainActivity : AppCompatActivity() {
@@ -34,7 +36,6 @@ class MainActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.orientation).setOnClickListener {
             startActivity(Intent(this@MainActivity,ScreenOrientationActivity::class.java))
         }
-
     }
 
     @MethodTrace

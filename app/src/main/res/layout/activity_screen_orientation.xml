@@ -21,4 +21,26 @@
        android:text="手动切换"
        app:layout_constraintBottom_toBottomOf="parent"
        />
+   <TextView
+       android:id="@+id/sp_tv"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="sp1"
+       android:layout_marginTop="260dp"
+       android:gravity="center"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
+   <TextView
+       android:id="@+id/sp_tttv"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="sp2"
+       android:layout_marginTop="300dp"
+       android:gravity="center"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintLeft_toLeftOf="parent"
+       app:layout_constraintRight_toRightOf="parent"
+       app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

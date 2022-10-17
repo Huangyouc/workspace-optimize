@@ -1,6 +1,7 @@
 package com.example.optimize
 
 import android.app.Application
+import com.example.module_base.ApplicationUtil
 import com.example.optimize.fps.FpsMonitor
 
 class App : Application() {
@@ -8,6 +9,7 @@ class App : Application() {
         super.onCreate()
         instance = this
         ActivityManager.instance.init(this)
+        ApplicationUtil.init(this)
     }
 
     companion object{

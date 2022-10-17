@@ -8,7 +8,9 @@ import android.util.Log
 import android.view.OrientationEventListener
 import android.view.Surface
 import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.example.module_base.sputil.SpUtil
 import com.example.optimize.R
 import kotlinx.android.synthetic.main.activity_screen_orientation.*
 
@@ -19,6 +21,17 @@ class ScreenOrientationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_screen_orientation)
+
+        sp_tv.setOnClickListener {
+
+            SpUtil.getSp("").put("test","123456")
+
+            findViewById<TextView>(R.id.sp_tv).text =  SpUtil.getSp("")["test", "default"] as String
+        }
+        sp_tttv.setOnClickListener {
+            SpUtil.getSp(SpUtil.FILE_SHARED).put("test2","abcdefg")
+            findViewById<TextView>(R.id.sp_tttv).text =  SpUtil.getSp(SpUtil.FILE_SHARED)["test2", "default"] as String
+        }
 
         change.setOnClickListener {
            if(TextUtils.equals(lastDeviceOrientationValue,"PORTRAIT")){

@@ -31,5 +31,10 @@
       <option name="name" value="MavenLocal" />
       <option name="url" value="file:$USER_HOME$/.m2/repository/" />
     </remote-repository>
+    <remote-repository>
+      <option name="id" value="maven" />
+      <option name="name" value="maven" />
+      <option name="url" value="http://10.4.88.52:8088/repository/maven-releases/" />
+    </remote-repository>
   </component>
 </project>
