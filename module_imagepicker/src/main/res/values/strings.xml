@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name_picker">module_imagepicker</string>
+    <!--图片选择和拍照-->
+    <string name="ip_all_images">所有图片</string>
+    <string name="ip_folder_image_count">共%1$d张</string>
+    <string name="ip_preview_image_count">%1$d/%2$d</string>
+    <string name="ip_select_limit">最多选择%1$d张图片</string>
+    <string name="ip_send">发送</string>
+    <string name="ip_select_send">发送(%1$d/%2$d)</string>
+    <string name="ip_preview">预览</string>
+    <string name="ip_preview_count">预览(%1$d)</string>
+    <string name="ip_photo_crop">图片裁剪</string>
+    <string name="ip_origin">原图</string>
+    <string name="ip_origin_size">原图(%1$s)</string>
+    <string name="ip_photo">图片</string>
+    <string name="ip_take_photo">拍摄照片</string>
+
+    <string name="user_text_need_permissions">您关闭了%1$s，将不能正常进行个人 %2$s，您可以通过设置-应用-国盛研究-权限开启后再使用该功能</string>
+    <string name="user_permission_camera">相机权限</string>
+    <string name="user_confirm">确定</string>
+</resources>

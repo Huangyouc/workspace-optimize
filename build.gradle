@@ -1,18 +1,14 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-//    ext.kotlin_version = "1.5.31"
-//    ext.kotlin_version = "1.5.10"
-    ext.kotlin_version = "1.6.21"
-//    ext.kotlin_version = "1.7.10"
-//    ext.kotlin_gradle_plugin = "1.6.21"
-    ext.compile_sdk_version = 31
-    ext.build_tools_version = "30.0.2"
-    ext.target_sdk_version = 30
-    ext.min_sdk_version = 21
-
+    apply from: 'versions.gradle'
     repositories {
         google()
         jcenter()
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }//使用maven.aliyun.com提供的其它代理仓，例如google仓库
+        maven {url 'http://developer.huawei.com/repo/'}//华为
+        maven { url "https://www.jitpack.io" }
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.0"
@@ -27,6 +23,11 @@ allprojects {
     repositories {
         google()
         jcenter()
+        mavenCentral()
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        maven { url 'https://maven.aliyun.com/repository/google' }//使用maven.aliyun.com提供的其它代理仓，例如google仓库
+        maven {url 'http://developer.huawei.com/repo/'}//华为
+        maven { url "https://www.jitpack.io" }
 //        maven {
 //            url 'http://10.4.88.52:8088/repository/maven-releases/'
 //            content {includeGroup "com.noah.audio"}

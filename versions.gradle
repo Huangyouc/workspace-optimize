@@ -1,0 +1,60 @@
+
+ext {
+
+    // Sdk and tools
+    compileSdkVersion = 31
+    minSdkVersion = 21
+    targetSdkVersion = 30
+    buildToolsVersion = "30.0.2"
+    versionCode = gitVersionCode()
+    versionName = gitVersionTag()
+
+    kotlin_version = "1.6.21"
+
+    // App dependencies
+    atsl_rules_version = "1.1.0-alpha4"
+    atsl_runner_version = "1.1.0-alpha4"
+    constraintLayoutVersion = '2.0.0-rc1'
+    annotationPlugin="1.0.2"
+    coreTestingVersion = '2.0.0'
+    espressoVersion = '3.1.0-alpha4'
+    glideVersion = '4.9.0'
+    junitVersion = '4.12'
+    materialVersion = '1.2.0'
+    recyclerViewVersion = '1.2.0-alpha05'
+    rxjavaVersion="2.2.7"
+    rxandroidVersion="2.1.1"
+    supportLibraryVersion = '1.3.0-alpha01'
+    uiAutomatorVersion = '2.2.0'
+    photoViewVersion ='2.3.0'
+
+}
+
+def addRepos(RepositoryHandler handler) {
+    handler.google()
+    handler.jcenter()
+    handler.maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
+}
+def gitVersionCode() {
+    def cmd = 'git rev-list HEAD --count'
+    def versioncode = cmd.execute().text.trim().toInteger()
+    return versioncode
+}
+
+def gitVersionTag() {
+//    def cmd = 'git describe --tags'
+//    def version = cmd.execute().text.trim()
+//    System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@:"+version)
+//    def pattern = "-(\\d+)-g"
+//    def matcher = version =~ pattern
+//    if (matcher) {
+//        version = version.substring(0, matcher.start()) + "." + matcher[0][1]
+//    } else {
+//
+//        version = version
+//    }
+    
+    version = "1.2.0"
+    return version
+}
+

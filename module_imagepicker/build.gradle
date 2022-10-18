@@ -1,0 +1,81 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+
+        vectorDrawables.useSupportLibrary = true
+
+        multiDexEnabled true
+
+        //ARouter
+//        javaCompileOptions {
+//            annotationProcessorOptions {
+//                arguments = [AROUTER_MODULE_NAME: project.getName()]
+//            }
+//        }
+
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    repositories {
+        flatDir {
+            dirs 'libs'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    /*********/
+    implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
+    annotationProcessor "androidx.annotation:annotation:$rootProject.annotationPlugin"
+
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    implementation "androidx.recyclerview:recyclerview:$rootProject.recyclerViewVersion"
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+
+
+    /**********RxJava***********/
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.rxjavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.rxandroidVersion"
+    /**********RxJava***********/
+
+    /**********glide***********/
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"//参考链接：https://mp.weixin.qq.com/s?__biz=MzIwMzYwMTk1NA%3D%3D&mid=2247486266&idx=1&sn=80380a7f5163e721c1edfe8542922b3d&chksm=96cdaa77a1ba2361e6ed514cd9cb7ff0b80249c7e0fcb6fbfd1d9784b8dc25e763fd3127d6c4&mpshare=1&scene=23&srcid=0807UTnGCQ0AHjPEiEAdJNjY
+    annotationProcessor "com.github.bumptech.glide:compiler:$rootProject.glideVersion"
+    /**********glide***********/
+
+    implementation "com.github.chrisbanes:PhotoView:$rootProject.photoViewVersion"
+
+
+    // Testing dependencies
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:$rootProject.uiAutomatorVersion"
+    testImplementation "junit:junit:$rootProject.junitVersion"
+
+    // Android Testing Support Library's runner and rules
+    androidTestImplementation "androidx.test:runner:$rootProject.atsl_runner_version"
+    androidTestImplementation "androidx.test:rules:$rootProject.atsl_runner_version"
+
+    implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
+}
