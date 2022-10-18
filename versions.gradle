@@ -28,6 +28,22 @@ ext {
     uiAutomatorVersion = '2.2.0'
     photoViewVersion ='2.3.0'
 
+    /****maven demo中使用***/
+    MAVEN_REPOSITORY_PATH = 'http://10.4.88.52:8088/repository/maven-releases/'
+    GROUP_ID = 'com.noah.audio'
+    PACKAGE_TYPE = 'aar'
+
+    artifactId = [
+            ARTIFACT_ID = 'audio-player'
+    ]
+
+    versionName = [
+            VERSION_NAME = '0.2.7'
+    ]
+
+    MAVEN_USER_NAME='admin'
+    MAVEN_PASSWORD='admin123'
+    /****maven demo中使用***/
 }
 
 def addRepos(RepositoryHandler handler) {
