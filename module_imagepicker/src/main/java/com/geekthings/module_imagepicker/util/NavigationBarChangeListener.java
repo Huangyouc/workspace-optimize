@@ -5,10 +5,6 @@ import android.graphics.Rect;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-/**
- * Created by sunny on 2017/11/13.
- */
-
 public class NavigationBarChangeListener implements ViewTreeObserver.OnGlobalLayoutListener {
 
     public static final int ORIENTATION_VERTICAL = 1;           //监听竖屏模式导航栏的显示和隐藏

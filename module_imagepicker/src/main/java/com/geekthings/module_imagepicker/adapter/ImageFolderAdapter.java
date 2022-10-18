@@ -17,9 +17,6 @@ import com.geekthings.module_imagepicker.util.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by sunny on 2017/11/12.
- */
 
 public class ImageFolderAdapter extends BaseAdapter {
     private ImagePicker imagePicker;

@@ -4,12 +4,6 @@ import com.geekthings.module_imagepicker.ImagePicker;
 import com.geekthings.module_imagepicker.loader.GlideImageLoader;
 import com.geekthings.module_imagepicker.view.CropImageView;
 
-/**
- * @ClassName: ImageUtils
- * @Author: cz
- * @CreateDate: 2019/4/23 10:12 AM
- * @Description:
- */
 public class ImageUtils {
 
     public static void initImagePicker(boolean allowsEditing) {

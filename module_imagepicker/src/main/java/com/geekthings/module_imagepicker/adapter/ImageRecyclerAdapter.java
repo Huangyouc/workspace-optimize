@@ -22,10 +22,6 @@ import com.geekthings.module_imagepicker.util.Utils;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by sunny on 2017/11/12.
- */
-
 public class ImageRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private static final int ITEM_TYPE_CAMERA = 0;  //第一个条目是相机

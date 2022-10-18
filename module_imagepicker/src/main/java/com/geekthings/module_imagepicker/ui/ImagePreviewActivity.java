@@ -18,10 +18,6 @@ import com.geekthings.module_imagepicker.model.ImageItem;
 import com.geekthings.module_imagepicker.util.NavigationBarChangeListener;
 import com.geekthings.module_imagepicker.util.Utils;
 
-/**
- * Created by sunny on 2017/11/13.
- */
-
 public class ImagePreviewActivity extends ImagePreviewBaseActivity
         implements ImagePicker.OnImageSelectedListener, View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 

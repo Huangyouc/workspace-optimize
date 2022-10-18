@@ -24,10 +24,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Created by sunny on 2017/11/12.
- */
-
 public class ImagePicker {
 
     public static final String TAG = ImagePicker.class.getSimpleName();

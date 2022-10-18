@@ -8,10 +8,6 @@ import com.bumptech.glide.request.RequestOptions;
 import com.geekthings.module_imagepicker.R;
 import com.geekthings.module_imagepicker.model.ImageItem;
 
-/**
- * Created by sunny on 2017/11/12.
- */
-
 public class GlideImageLoader implements ImageLoader {
 
     private static final RequestOptions mOptions;

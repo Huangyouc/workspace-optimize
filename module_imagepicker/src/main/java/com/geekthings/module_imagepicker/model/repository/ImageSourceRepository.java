@@ -16,11 +16,6 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
-
-/**
- * Created by sunny on 2017/11/10.
- */
-
 public class ImageSourceRepository {
     private volatile static ImageSourceRepository sInstance;
 

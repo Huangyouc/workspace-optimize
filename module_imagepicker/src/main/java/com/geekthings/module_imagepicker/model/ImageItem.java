@@ -6,9 +6,6 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 
-/**
- * Created by sunny on 2017/11/10.
- */
 public class ImageItem implements Serializable, Parcelable {
     public String id;         //图片的ID
     public Uri uri;

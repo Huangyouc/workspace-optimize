@@ -35,8 +35,6 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * Created by sunny on 2017/11/13.
- *
  * Matrix 的9个值分别为  缩放  平移  倾斜
  * MSCALE_X	 MSKEW_X	MTRANS_X
  * MSKEW_Y	 MSCALE_Y	MTRANS_Y

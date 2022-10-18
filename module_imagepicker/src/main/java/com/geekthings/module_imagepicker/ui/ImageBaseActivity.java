@@ -14,10 +14,6 @@ import android.widget.Toast;
 import com.geekthings.module_imagepicker.ImagePicker;
 import com.geekthings.module_imagepicker.R;
 import com.geekthings.module_imagepicker.view.SystemBarTintManager;
-
-/**
- * Created by sunny on 2017/11/10.
- */
 public class ImageBaseActivity extends AppCompatActivity {
 
     protected SystemBarTintManager tintManager;

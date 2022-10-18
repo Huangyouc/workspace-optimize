@@ -6,10 +6,6 @@ import android.os.Parcelable;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-/**
- * Created by sunny on 2017/11/10.
- */
-
 public class ImageFolder implements Parcelable {
     public String id;    //文件夹的id
     public String name;  //当前文件夹的名字

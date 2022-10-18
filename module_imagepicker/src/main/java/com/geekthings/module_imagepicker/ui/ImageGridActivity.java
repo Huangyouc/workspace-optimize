@@ -387,7 +387,7 @@ public class ImageGridActivity extends ImageBaseActivity
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         ImageItem imageItem = null;
-        Log.e("sunny","sunny requestCode "+requestCode+" resultCode " +resultCode);
+        Log.e("ImageGridActivity","requestCode "+requestCode+" resultCode " +resultCode);
 
         switch (requestCode){
 

@@ -21,10 +21,6 @@ import com.geekthings.module_imagepicker.view.CropImageView;
 import java.io.File;
 import java.io.FileNotFoundException;
 
-/**
- * Created by sunny on 2017/11/13.
- */
-
 public class ImageCropActivity extends ImageBaseActivity implements View.OnClickListener, CropImageView.OnBitmapSaveCompleteListener {
     private CropImageView mCropImageView;
     private Bitmap mBitmap;

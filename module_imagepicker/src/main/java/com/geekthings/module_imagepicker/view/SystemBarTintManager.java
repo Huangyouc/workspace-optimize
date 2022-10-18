@@ -21,10 +21,6 @@ import android.widget.FrameLayout;
 
 import java.lang.reflect.Method;
 
-/**
- * Created by sunny on 2017/10/10.
- */
-
 public class SystemBarTintManager {
     static {
         // Android allows a system property to override the presence of the navigation bar.

@@ -12,10 +12,6 @@ import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
 
-/**
- * Created by sunny on 2017/11/10.
- */
-
 public class Utils {
 
     /** 获得状态栏的高度 */

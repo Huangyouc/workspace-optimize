@@ -14,10 +14,6 @@ import com.github.chrisbanes.photoview.PhotoView;
 
 import java.util.ArrayList;
 
-/**
- * Created by sunny on 2017/11/12.
- */
-
 public class ImagePageAdapter extends PagerAdapter {
     private int screenWidth;
     private int screenHeight;

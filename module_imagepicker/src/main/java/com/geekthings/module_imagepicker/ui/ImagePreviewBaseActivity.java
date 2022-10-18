@@ -18,10 +18,6 @@ import com.geekthings.module_imagepicker.view.HackyViewPager;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by sunny on 2017/11/12.
- */
-
 public abstract class ImagePreviewBaseActivity extends ImageBaseActivity {
     protected ImagePicker imagePicker;
     protected ArrayList<ImageItem> mImageItems;      //跳转进ImagePreviewFragment的图片文件夹
