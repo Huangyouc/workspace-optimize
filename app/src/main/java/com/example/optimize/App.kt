@@ -3,6 +3,7 @@ package com.example.optimize
 import android.app.Application
 import com.example.module_base.ApplicationUtil
 import com.example.optimize.fps.FpsMonitor
+import com.hjq.toast.ToastUtils
 
 class App : Application() {
     override fun onCreate() {
@@ -10,6 +11,7 @@ class App : Application() {
         instance = this
         ActivityManager.instance.init(this)
         ApplicationUtil.init(this)
+        ToastUtils.init(this)
     }
 
     companion object{
