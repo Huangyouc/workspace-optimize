@@ -55,5 +55,6 @@ dependencies {
     api 'com.jaeger.statusbarutil:library:1.5.1'
     // 吐司框架：https://github.com/getActivity/ToastUtils
     api 'com.github.getActivity:ToastUtils:10.5'
+    api 'com.github.getActivity:XXPermissions:16.2'
     implementation project(':module_imagepicker')
 }
