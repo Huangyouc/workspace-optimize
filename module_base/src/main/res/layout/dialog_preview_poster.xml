@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/rl_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center">
+        <ProgressBar
+            android:layout_width="@dimen/dp_40"
+            android:layout_height="@dimen/dp_40"
+            android:layout_gravity="center_horizontal"
+            android:indeterminateDrawable="@drawable/loading_progress_bar_style"
+            android:indeterminateDuration="800" />
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        >
+        <ImageView
+            android:id="@+id/iv_info_poster"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:scaleType="centerInside"
+            android:layout_marginStart="@dimen/dp_27"
+            android:layout_marginEnd="@dimen/dp_27"
+            android:layout_marginTop="@dimen/dp_30"
+            android:layout_marginBottom="@dimen/dp_15"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_208"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/dp_20"
+            android:paddingEnd="@dimen/dp_20"
+            android:gravity="center_horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/ll_wechat"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="@dimen/dp_20"
+                    android:layout_marginEnd="@dimen/dp_34"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/icon_info_poster_dialog_wechat" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:text="微信"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_12" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_wxfriend"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/dp_34"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/share_icon_wxfriend_press" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:text="微信朋友圈"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_12" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_wwk"
+                    android:visibility="gone"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/dp_34"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/wecom" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:text="企业微信"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_12" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_info_poster_save"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginEnd="@dimen/dp_34"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/store_img" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="8dp"
+                        android:text="下载海报"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/sp_12" />
+
+                </LinearLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_cancel"
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_50"
+                    android:gravity="center">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="8dp"
+                        android:text="取消"
+                        android:textColor="#323232"
+                        android:textSize="@dimen/sp_16" />
+                </RelativeLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

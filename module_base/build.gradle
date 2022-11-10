@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.library'
     id 'kotlin-android'
+    id 'kotlin-android-extensions'
 }
 
 android {
@@ -37,6 +38,8 @@ android {
 }
 
 dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation files('libs/lib_wwapi-2.0.12.6.aar')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.8.0'
@@ -56,5 +59,9 @@ dependencies {
     // 吐司框架：https://github.com/getActivity/ToastUtils
     api 'com.github.getActivity:ToastUtils:10.5'
     api 'com.github.getActivity:XXPermissions:16.2'
+    api 'com.github.bumptech.glide:glide:4.12.0'
+    api 'com.google.zxing:core:3.3.2'
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'
+    implementation 'com.alibaba:fastjson:1.2.49'//JSON.parse 将String解析成model，或者将model序列化成String，很强大
     implementation project(':module_imagepicker')
 }

@@ -6,6 +6,8 @@ import android.telephony.TelephonyManager;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -379,5 +381,22 @@ public class StringUtils {
 			return String.valueOf((long)num);
 		}
 		return String.valueOf(num);
+	}
+
+	/**
+	 * 将链接中的中文encode，否则在微信里会被截断
+	 */
+	public static String encodeChinese(String url) {
+		try {
+			Matcher matcher = Pattern.compile("[\\u4e00-\\u9fa5]").matcher(url);
+			String tmp = "";
+			while (matcher.find()) {
+				tmp = matcher.group();
+				url = url.replaceAll(tmp, URLEncoder.encode(tmp, "UTF-8"));
+			}
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return url.replace(" ","%20");//替换空格
 	}
 }
