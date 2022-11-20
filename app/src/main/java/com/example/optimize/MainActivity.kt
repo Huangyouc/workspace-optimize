@@ -3,10 +3,9 @@ package com.example.optimize
 import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import annotationtest.AnnotationTest
-import com.example.module_base.sputil.SpUtil
+import com.example.module_floatwindow.TestUtils
+import com.example.modulea.BuildConfig
 import com.example.optimize.aspectj.MethodTrace
 import com.example.optimize.fps.FpsMonitor
 import kotlinx.android.synthetic.main.activity_main.*
@@ -35,6 +34,11 @@ class MainActivity : AppCompatActivity() {
 
         findViewById<TextView>(R.id.orientation).setOnClickListener {
             startActivity(Intent(this@MainActivity,ScreenOrientationActivity::class.java))
+        }
+
+
+        if(com.example.optimize.BuildConfig.DEBUG){
+            TestUtils.envChange(this)
         }
     }
 

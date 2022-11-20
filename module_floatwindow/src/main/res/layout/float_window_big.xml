@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/big_window_layout"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f2f2f4"
+    android:orientation="vertical">
+
+    <Button
+        android:id="@+id/close"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="12dip"
+        android:text="关闭悬浮窗"
+        android:visibility="gone" />
+
+    <Button
+        android:id="@+id/txt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="当前环境:" />
+
+    <Button
+        android:id="@+id/user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="userid:" />
+
+    <Button
+        android:id="@+id/btn_pre_pro"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="切换到预生产环境" />
+
+    <Button
+        android:id="@+id/btn_uat_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="切换到UAT_NEW环境" />
+
+    <Button
+        android:id="@+id/btn_sit_new"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="切换到SIT_NEW环境" />
+
+    <Button
+        android:id="@+id/btn_uat_t1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="切换到UAT_T1环境" />
+
+    <Button
+        android:id="@+id/btn_uat_t2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="切换到UAT_T2环境" />
+
+    <Button
+        android:id="@+id/btn_uat_t3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="切换到UAT_T3环境" />
+
+    <Button
+        android:id="@+id/btn_uat_t4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="切换到UAT_T4环境" />
+
+    <Button
+      android:id="@+id/btn_uat_t5"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_gravity="center_horizontal"
+      android:text="切换到UAT_T5环境" />
+
+    <Button
+        android:id="@+id/btn_skip_web"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="跳转到web页面" />
+    <Button
+        android:id="@+id/btn_flutter_config"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="跳转到flutter抓包配置页" />
+    <Button
+        android:id="@+id/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="返回" />
+
+</LinearLayout>

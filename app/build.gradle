@@ -60,13 +60,13 @@ android {
     flavorDimensions "default"
     productFlavors {
         normal{
-            buildConfigField "String", "channel", ""
+            buildConfigField "String", "test_channel", "\"1212\""
         }
         baidu{
-            buildConfigField "String", "channel", "badiu"
+            buildConfigField "String", "test_channel", "\"badiu\""
         }
         huawei{
-            buildConfigField "String", "channel", "huawei"
+            buildConfigField "String", "test_channel", "huawei"
         }
 
     }
@@ -115,7 +115,8 @@ dependencies {
     implementation project(':module_file')
     implementation project(':modulea')
     implementation project(':moduleb')
-    implementation project(':module_mavendemo')
+//    implementation project(':module_mavendemo')
+    implementation project(':module_floatwindow')
 
     implementation project(':processor')
     annotationProcessor project(':processor')

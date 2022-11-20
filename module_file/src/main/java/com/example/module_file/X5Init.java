@@ -1,5 +1,6 @@
 package com.example.module_file;
 
+import android.content.Context;
 import android.util.Log;
 
 import com.tencent.smtt.sdk.QbSdk;
@@ -7,7 +8,7 @@ import com.tencent.smtt.sdk.TbsDownloader;
 import com.tencent.smtt.sdk.TbsListener;
 
 public class X5Init {
-    public static void init(){
+    public static void init(Context context){
         QbSdk.setDownloadWithoutWifi(true);
         // 搜集本地tbs内核信息并上报服务器，服务器返回结果决定使用哪个内核。
         QbSdk.PreInitCallback cb = new QbSdk.PreInitCallback() {
@@ -20,16 +21,16 @@ public class X5Init {
 
                 if (!b && !QbSdk.getIsSysWebViewForcedByOuter()) { //使用系统内核可能是x5内核在之前未安装成功，重新安装
                     Log.e("TbsReaderView","restart");
-                    boolean needDownload = TbsDownloader.needDownload(IFAApplication.getInstance().getApplicationContext(), TbsDownloader.DOWNLOAD_OVERSEA_TBS);
+                    boolean needDownload = TbsDownloader.needDownload(context, TbsDownloader.DOWNLOAD_OVERSEA_TBS);
                     Log.e("TbsReaderView", "onCreate: "+needDownload );
                     if (needDownload) {
                         //判断是否是x5内核未下载成功，存在缓存 重置化sdk，这样就清除缓存继续下载了
-                        QbSdk.reset(IFAApplication.getInstance().getApplicationContext());
+                        QbSdk.reset(context);
                         //开始下载x5内核
-                        TbsDownloader.startDownload(IFAApplication.getInstance().getApplicationContext(),true);//一定要用两个参数的startDownload，且第二个参数传true
+                        TbsDownloader.startDownload(context,true);//一定要用两个参数的startDownload，且第二个参数传true
                     }else{
                         Log.e("TbsReaderView", "initX5Environment");
-                        QbSdk.initX5Environment(IFAApplication.getInstance().getApplicationContext(), this);
+                        QbSdk.initX5Environment(context, this);
                     }
                 }
             }
@@ -40,7 +41,7 @@ public class X5Init {
             }
         };
         // x5内核初始化接口
-        QbSdk.initX5Environment(IFAApplication.getInstance().getApplicationContext(), cb);
+        QbSdk.initX5Environment(context, cb);
         QbSdk.setTbsListener(new TbsListener() {
             @Override
             public void onDownloadFinish(int i) {
@@ -49,12 +50,12 @@ public class X5Init {
             @Override
             public void onInstallFinish(int i) {
                 Log.e("TbsReaderView", "onInstallFinish: 内核下载安装成功" );
-                QbSdk.initX5Environment(IFAApplication.getInstance().getApplicationContext(), cb);
+                QbSdk.initX5Environment(context, cb);
             }
             @Override
             public void onDownloadProgress(int i) {
                 Log.e("TbsReaderView", "onDownloadProgress: "+i);
-                QbSdk.initX5Environment(IFAApplication.getInstance().getApplicationContext(), cb);
+                QbSdk.initX5Environment(context, cb);
             }
         });
     }
