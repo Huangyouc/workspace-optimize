@@ -18,13 +18,58 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    //配置keystore签名
+    signingConfigs {
         release {
-            minifyEnabled false
+            storeFile file("./hyc.keystore")
+            storePassword "hycdemo"
+            keyAlias "hyc"
+            keyPassword "hycdemo"
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+        debug {
+            v1SigningEnabled true
+            v2SigningEnabled true
+        }
+    }
+    buildTypes {
+
+        release {
+            minifyEnabled true
+            shrinkResources true //资源压缩
+            zipAlignEnabled true//Zipalign优化
+            buildConfigField "String", "RSA_PUBLIC_KEY", "\"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCq9U4ERntrIMhPdo9Al9yKyBlbG5TVRiJYXaLE37lmG0p7jDJZKwpU/shLSENV8aerdG0MIEBeLp7NaF7VfJ9wJvzuOKTryfV04Ufla7BiHp/zaeGBVdwCm2OBcWjtCsjUUmBViK+qAPMSSrZs3wG9omHKPt7mQckVAsP1B6/P6QIDAQAB\""
+
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            buildConfigField "boolean", "LOG_DEBUG", "true"
+            buildConfigField "String", "RSA_PUBLIC_KEY", "\"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCq9U4ERntrIMhPdo9Al9yKyBlbG5TVRiJYXaLE37lmG0p7jDJZKwpU/shLSENV8aerdG0MIEBeLp7NaF7VfJ9wJvzuOKTryfV04Ufla7BiHp/zaeGBVdwCm2OBcWjtCsjUUmBViK+qAPMSSrZs3wG9omHKPt7mQckVAsP1B6/P6QIDAQAB\""
+
+            minifyEnabled false
+            shrinkResources false //资源压缩
+            zipAlignEnabled false//Zipalign优化
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
+    flavorDimensions "default"
+    productFlavors {
+        normal{
+            buildConfigField "String", "channel", ""
+        }
+        baidu{
+            buildConfigField "String", "channel", "badiu"
+        }
+        huawei{
+            buildConfigField "String", "channel", "huawei"
+        }
+
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -67,6 +112,10 @@ dependencies {
     implementation project(':module_base')
     implementation project(':annotation')
     implementation project(':inject')
+    implementation project(':module_file')
+    implementation project(':modulea')
+    implementation project(':moduleb')
+    implementation project(':module_mavendemo')
 
     implementation project(':processor')
     annotationProcessor project(':processor')
