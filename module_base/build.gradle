@@ -64,5 +64,6 @@ dependencies {
     api 'com.tencent.mm.opensdk:wechat-sdk-android-without-mta:6.8.0'
     implementation 'com.alibaba:fastjson:1.2.49'//JSON.parse 将String解析成model，或者将model序列化成String，很强大
     implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.github.gzu-liyujiang:Android_CN_OAID:4.2.4'
     implementation project(':module_imagepicker')
 }
