@@ -11,7 +11,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.WindowManager
 import android.widget.TextView
-import com.example.optimize.ActivityManager
+import com.example.module_base.AppManager
 import com.example.optimize.App
 import com.example.optimize.R
 import java.text.DecimalFormat
@@ -61,8 +61,8 @@ object FpsMonitor {
                 }
             })
 
-            ActivityManager.instance.addFrontBackCallback(object :
-                ActivityManager.FrontBackCallback {
+            AppManager.getInstance().addFrontBackCallback(object :
+                AppManager.FrontBackCallback {
                 override fun onChanged(front: Boolean) {
                     if (front) {
                         play()
@@ -96,7 +96,7 @@ object FpsMonitor {
 
         private fun startOverlaySettingActivity() {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                ActivityManager.instance.getTopActivity(true)!!.startActivity(
+                AppManager.getInstance().getTopActivity()!!.startActivity(
                     Intent(
                         Settings.ACTION_MANAGE_OVERLAY_PERMISSION,
                         Uri.parse("package:" + application.packageName)

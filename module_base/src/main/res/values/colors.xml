@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">@color/cl_content_background1</color>
+    <color name="colorPrimaryDark">@color/cl_content_background1</color>
+    <color name="colorAccent">@color/cl_golden_EFC88E</color>
+    <!--通用的最下层的背景色-->
+    <color name="cl_main_background">@color/cl_black_000000</color>
+    <!--通用化的内容卡片背景色1-->
+    <color name="cl_content_background1">@color/cl_black_1D1D21</color>
+    <!--通用化的内容卡片背景色2-->
+    <color name="cl_content_background2">@color/cl_black_2A2A30</color>
+    <color name="cl_black_000000">@android:color/black</color>
+    <color name="cl_black_1D1D21">#1D1D21</color>
+    <color name="cl_black_2A2A30">#2A2A30</color>
+    <color name="cl_golden_EFC88E">#EFC88E</color>  <!-- 若描边不能用渐变色，就用此颜色-->
+    <color name="cl_golden_F3D49C">#F3D49C</color>
+    <color name="cl_text_g1">@color/cl_golden_F3D49C</color>
+
+
+
+
+
+
+
+</resources>

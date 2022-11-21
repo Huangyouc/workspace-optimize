@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <RelativeLayout
+            android:id="@+id/layout"
+            android:background="@drawable/common_icon_loading"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+        <ImageView
+                android:id="@+id/image"
+                android:background="@drawable/common_icon_loading_progress"
+                android:layout_centerInParent="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+<!--        <ProgressBar-->
+<!--            android:layout_width="33dp"-->
+<!--            android:layout_height="33dp"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:indeterminateDrawable="@drawable/loading_progress_bar_style"-->
+<!--            android:indeterminateDuration="800" />-->
+    </RelativeLayout>
+    <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/text"
+            app:layout_constraintTop_toBottomOf="@+id/layout"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textColor="@color/cl_text_g1"
+            android:textSize="@dimen/sp_15"
+            android:text="@string/common_loading"
+            android:layout_marginTop="@dimen/dp_7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+</androidx.constraintlayout.widget.ConstraintLayout>
