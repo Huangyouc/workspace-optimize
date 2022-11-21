@@ -41,6 +41,7 @@ class TinyPngPTransform extends Transform {
         classPool.importPackage("android.widget.ImageView")
         classPool.importPackage("androidx.appcompat.widget.AppCompatImageView")
         classPool.importPackage("android.graphics.drawable.Drawable")
+        classPool.importPackage("com.example.optimize.WebActivity")
     }
 
     @Override
@@ -112,10 +113,15 @@ class TinyPngPTransform extends Transform {
                 ///Users/timian/Desktop/AndroidArchitect/AndroidArchitect/ASProj/app/build/intermediates/transforms/AndroidEntryPointTransform/debug/1/org/devio/as/proj/main/degrade/DegradeGlobalActivity.class
                 println("handleDirectory file path:" + filePath)
                 if (shouldModifyClass(filePath)) {
-                    def inputStream = new FileInputStream(file)
-                    def ctClass = modifyClass(inputStream)
-                    ctClass.writeFile(dir.name)
-                    ctClass.detach()
+                    try {
+                        def inputStream = new FileInputStream(file)
+                        def ctClass = modifyClass(inputStream)
+                        ctClass.writeFile(dir.name)
+                        ctClass.detach()
+                    }catch(Exception e){
+                        e.printStackTrace()
+                    }
+
                 }
             }
         }
