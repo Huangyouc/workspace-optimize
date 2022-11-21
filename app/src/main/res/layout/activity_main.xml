@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <TextView
-        android:id="@+id/helle_tv"
+        android:id="@+id/hello_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"
@@ -75,6 +75,19 @@
         android:layout_height="wrap_content"
         android:text="sp2"
         android:layout_marginTop="300dp"
+        android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+    <TextView
+        android:id="@+id/testtest"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="demoactivity"
+        android:layout_marginTop="330dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"

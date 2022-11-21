@@ -6,20 +6,22 @@
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <RelativeLayout
+    <LinearLayout
             android:id="@+id/layout"
             android:background="@drawable/common_icon_loading"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="@dimen/dp_50"
+            android:layout_height="@dimen/dp_55"
+        android:gravity="center"
+        android:orientation="vertical">
         <ImageView
                 android:id="@+id/image"
                 android:background="@drawable/common_icon_loading_progress"
                 android:layout_centerInParent="true"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+                android:layout_width="@dimen/dp_30"
+                android:layout_height="@dimen/dp_30"/>
 <!--        <ProgressBar-->
 <!--            android:layout_width="33dp"-->
 <!--            android:layout_height="33dp"-->
@@ -27,7 +29,7 @@
 <!--            android:layout_marginTop="10dp"-->
 <!--            android:indeterminateDrawable="@drawable/loading_progress_bar_style"-->
 <!--            android:indeterminateDuration="800" />-->
-    </RelativeLayout>
+    </LinearLayout>
     <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/text"
             app:layout_constraintTop_toBottomOf="@+id/layout"

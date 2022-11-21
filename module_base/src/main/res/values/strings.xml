@@ -2,4 +2,5 @@
 <resources>
     <string name="app_name">demo_hyc</string>
     <string name="common_loading">加载中</string>
+    <string name="common_no_data">暂无数据</string>
 </resources>

@@ -4,12 +4,15 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.view.View;
+import android.view.ViewStub;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.module_base.AppManager;
+import com.example.module_base.R;
 import com.example.module_base.StringUtils;
 import com.example.module_base.dialog.CommonLoadingDialog;
 
@@ -17,7 +20,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 
     private CommonLoadingDialog mLoadingDialog;
-
+    private ViewStub mEmptyView;
     public  Handler mHandler = new Handler(Looper.getMainLooper()){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -59,6 +62,20 @@ public abstract class BaseActivity extends AppCompatActivity {
                     }
                 }
             });
+        }
+    }
+
+    public void showEmptyView(){
+        if(mEmptyView==null){
+            mEmptyView = findViewById(R.id.view_stub);
+            mEmptyView.inflate();
+        }else {
+            mEmptyView.setVisibility(ViewStub.VISIBLE);
+        }
+    }
+    public void hideEmptyView(){
+        if(mEmptyView!=null){
+            mEmptyView.setVisibility(View.GONE);
         }
     }
 }
