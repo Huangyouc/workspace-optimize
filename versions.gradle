@@ -68,19 +68,19 @@ def gitVersionCode() {
 }
 
 def gitVersionTag() {
-//    def cmd = 'git describe --tags'
-//    def version = cmd.execute().text.trim()
-//    System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@:"+version)
-//    def pattern = "-(\\d+)-g"
-//    def matcher = version =~ pattern
-//    if (matcher) {
-//        version = version.substring(0, matcher.start()) + "." + matcher[0][1]
-//    } else {
-//
-//        version = version
-//    }
+    def cmd = 'git describe --tags'
+    def version = cmd.execute().text.trim()
+    System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@:"+version)
+    def pattern = "-(\\d+)-g"
+    def matcher = version =~ pattern
+    if (matcher) {
+        version = version.substring(0, matcher.start()) + "." + matcher[0][1]
+    } else {
+
+        version = "1.0"
+    }
     
-    version = "1.2.0"
+//    version = "1.2.0"
     return version
 }
 
