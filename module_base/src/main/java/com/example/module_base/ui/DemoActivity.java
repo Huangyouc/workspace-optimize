@@ -2,15 +2,18 @@ package com.example.module_base.ui;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
+import com.example.module_base.DeviceUtil;
 import com.example.module_base.R;
 
 public class DemoActivity extends BaseActivity {
 
+    TextView mTv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        mTv = findViewById(R.id.tv);
 //        showLoadingDialog("正在加载");
         showLoadingDialog(null);
 
@@ -19,16 +22,20 @@ public class DemoActivity extends BaseActivity {
             @Override
             public void run() {
                 dismissLoadingDialog();
-                showEmptyView();
+//                showEmptyView();
+                mTv.setText(DeviceUtil.getDeviceID(DemoActivity.this));
+
             }
         },2000);
 
-        findViewById(R.id.tv).setOnClickListener(new View.OnClickListener() {
+        mTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 hideEmptyView();
             }
         });
+
+
     }
 
     @Override

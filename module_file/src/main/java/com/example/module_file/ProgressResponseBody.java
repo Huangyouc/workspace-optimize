@@ -90,7 +90,7 @@ public class ProgressResponseBody extends ResponseBody {
         //回调，如果contentLength()不知道长度，会返回-1
         if (progressListener != null) {
           int progress = (int) (totalBytesRead * 1.0f / contentLength() * 100);
-          Logger.e("下载进度", "总进度："+contentLength()+"，，已下载的："+totalBytesRead+"，，进度" + progress);
+          Logger.e("总进度："+contentLength()+"，，已下载的："+totalBytesRead+"，，进度" + progress);
 
           progressListener.onDownloading(responseBody.contentLength(), totalBytesRead, progress);
         }

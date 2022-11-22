@@ -46,12 +46,12 @@ public class AppManager {
         application.registerActivityLifecycleCallbacks(new Application.ActivityLifecycleCallbacks() {
             @Override
             public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle savedInstanceState) {
-                Logger.e(TAG,activity.getClass().getSimpleName() + "  onActivityCreated");
+                Logger.e(activity.getClass().getSimpleName() + "  onActivityCreated");
             }
 
             @Override
             public void onActivityStarted(@NonNull Activity activity) {
-                Logger.e(TAG,activity.getClass().getSimpleName() + "  onActivityStarted");
+                Logger.e(activity.getClass().getSimpleName() + "  onActivityStarted");
                 activityStartCount++;
                 //activityStartCount>0  说明应用处在可见状态，也就是前台
                 //!front 之前是不是在后台
@@ -63,17 +63,17 @@ public class AppManager {
 
             @Override
             public void onActivityResumed(@NonNull Activity activity) {
-                Logger.e(TAG,activity.getClass().getSimpleName() + "  onActivityResumed");
+                Logger.e(activity.getClass().getSimpleName() + "  onActivityResumed");
             }
 
             @Override
             public void onActivityPaused(@NonNull Activity activity) {
-                Logger.e(TAG,activity.getClass().getSimpleName() + "  onActivityPaused");
+                Logger.e(activity.getClass().getSimpleName() + "  onActivityPaused");
             }
 
             @Override
             public void onActivityStopped(@NonNull Activity activity) {
-                Logger.e(TAG,activity.getClass().getSimpleName() + "  onActivityStopped");
+                Logger.e(activity.getClass().getSimpleName() + "  onActivityStopped");
                 activityStartCount--;
                 if (activityStartCount <= 0 && front) {
                     front = false;
@@ -88,7 +88,7 @@ public class AppManager {
 
             @Override
             public void onActivityDestroyed(@NonNull Activity activity) {
-                Logger.e(TAG,activity.getClass().getSimpleName() + "  onActivityDestroyed");
+                Logger.e(activity.getClass().getSimpleName() + "  onActivityDestroyed");
             }
         });
     }

@@ -52,7 +52,7 @@ uploadArchives {
                 // 自定义项目名称
                 artifactId rootProject.ARTIFACT_ID
                 // 项目版本号
-                version rootProject.VERSION_NAME
+                version rootProject.MAVEN_VERSION_NAME
                 packaging rootProject.PACKAGE_TYPE
             }
 

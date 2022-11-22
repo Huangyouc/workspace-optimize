@@ -7,7 +7,7 @@ repositories {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     //3.使用android plugin.相当于使用jetpack库
-    implementation 'com.android.tools.build:gradle:3.4.2'
+    implementation 'com.android.tools.build:gradle:4.1.0'
     //2.使用gradle api，相当于使用android sdk
     implementation gradleApi()
     //1.使用groovy库

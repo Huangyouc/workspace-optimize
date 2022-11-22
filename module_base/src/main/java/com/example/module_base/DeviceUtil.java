@@ -3,8 +3,15 @@ package com.example.module_base;
 import android.app.Application;
 import android.content.Context;
 import android.os.Build;
+import android.text.TextUtils;
+import android.util.Log;
 
+import com.example.module_base.sputil.SpHelper;
+import com.example.module_base.sputil.SpUtil;
 import com.github.gzuliyujiang.oaid.DeviceIdentifier;
+import com.orhanobut.logger.Logger;
+
+import java.util.UUID;
 
 /***
  * 获取android设备的唯一识别码
@@ -90,10 +97,36 @@ public class DeviceUtil {
      * @param context
      * @return
      */
-    private static String getImei(Context context) {
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-            return DeviceIdentifier.getIMEI(context);
-        } else
-            return DeviceIdentifier.getOAID(context);
+    public static String getDeviceID(Context context) {
+        String id="";
+        try{
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+                id =  DeviceIdentifier.getIMEI(context);
+                Logger.e("IMEI = "+id);
+            } else {
+                id = DeviceIdentifier.getOAID(context);
+                Logger.e("OAID = "+id);
+                Log.e("hyc>>>","OAID = "+id);
+            }
+
+            if(TextUtils.isEmpty(id)){
+                id = DeviceIdentifier.getAndroidID(context);
+                Logger.e("AndroidID = "+id);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+        }finally {
+            //实在取不到，就在应用第一次获取的时候，用UUID生成。用户卸载重装或者清空应用缓存，会重置这个uuid
+            if(TextUtils.isEmpty(id)){
+                id = (String) SpUtil.Companion.getSp("").get("uuid","");
+                if(TextUtils.isEmpty(id)){
+                    UUID uuid = UUID.randomUUID();
+                    id=uuid.toString();
+                    SpUtil.Companion.getSp("").put("uuid",id);
+                }
+            }
+        }
+
+        return id;
     }
 }

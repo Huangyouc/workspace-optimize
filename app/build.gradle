@@ -12,10 +12,29 @@ android {
         applicationId "com.example.optimize"
         minSdkVersion rootProject.minSdkVersion
         targetSdkVersion rootProject.targetSdkVersion
-        versionCode 1
-        versionName "1.0"
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters "armeabi", "armeabi-v7a", "x86", "mips"
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.each { output ->
+
+            if (variant.buildType.name == 'release') {
+                def releaseApkName ="${variant.flavorName}_"+"v"+"${defaultConfig.versionName}_"+"["+"${defaultConfig.versionCode}"+"]"+"[" + getCommitCode() + "]"+"${releaseTime()}_"+buildType.name + ".apk"
+
+//                def releaseApkName = "${releaseTime()}_" + "${defaultConfig.applicationId}" + "_${defaultConfig.versionName}" + "_release" + ".apk"
+                output.outputFileName = new File(releaseApkName)
+            } else if (variant.buildType.name == 'debug') {
+                def releaseApkName ="${variant.flavorName}_"+"v"+"${defaultConfig.versionName}_"+ "["+"${defaultConfig.versionCode}"+"]"+"[" + getCommitCode()+ "]"+"${releaseTime()}_"+buildType.name + ".apk"
+//                def releaseApkName = "${releaseTime()}_" + "${defaultConfig.applicationId}" + "_${defaultConfig.versionName}" + "_debug" + ".apk"
+                output.outputFileName = new File(releaseApkName)
+            }
+        }
     }
 
     //配置keystore签名
@@ -33,6 +52,7 @@ android {
             v2SigningEnabled true
         }
     }
+
     buildTypes {
 
         release {
@@ -40,7 +60,7 @@ android {
             shrinkResources true //资源压缩
             zipAlignEnabled true//Zipalign优化
             buildConfigField "String", "RSA_PUBLIC_KEY", "\"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCq9U4ERntrIMhPdo9Al9yKyBlbG5TVRiJYXaLE37lmG0p7jDJZKwpU/shLSENV8aerdG0MIEBeLp7NaF7VfJ9wJvzuOKTryfV04Ufla7BiHp/zaeGBVdwCm2OBcWjtCsjUUmBViK+qAPMSSrZs3wG9omHKPt7mQckVAsP1B6/P6QIDAQAB\""
-
+            buildConfigField "String", "FIRST_PUBLISH_CHANNEL", getFirstPublishChannel()
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.release
         }
@@ -48,7 +68,7 @@ android {
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             buildConfigField "String", "RSA_PUBLIC_KEY", "\"MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCq9U4ERntrIMhPdo9Al9yKyBlbG5TVRiJYXaLE37lmG0p7jDJZKwpU/shLSENV8aerdG0MIEBeLp7NaF7VfJ9wJvzuOKTryfV04Ufla7BiHp/zaeGBVdwCm2OBcWjtCsjUUmBViK+qAPMSSrZs3wG9omHKPt7mQckVAsP1B6/P6QIDAQAB\""
-
+            buildConfigField "String", "FIRST_PUBLISH_CHANNEL", getFirstPublishChannel()
             minifyEnabled false
             shrinkResources false //资源压缩
             zipAlignEnabled false//Zipalign优化
@@ -120,5 +140,21 @@ dependencies {
 
     implementation project(':processor')
     annotationProcessor project(':processor')
+}
+
+def releaseTime() {
+    return new Date().format("yyyyMMdd", TimeZone.getTimeZone("UTC"))
+}
+def getCommitCode() {
+    def cmd = 'git rev-parse --short HEAD'
+    def commit = cmd.execute().text.trim()
+
+    return commit
+}
+
+def getFirstPublishChannel(){
+//  默认渠道是dev,没有首发渠道可以写空字符或者 dev
+    def channel ='\"dev\"'
+    return channel
 }
 apply plugin: 'tinypng'

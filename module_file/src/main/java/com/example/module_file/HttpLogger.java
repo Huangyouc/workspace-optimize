@@ -1,6 +1,8 @@
 package com.example.module_file;
 
 
+import com.orhanobut.logger.Logger;
+
 import okhttp3.logging.HttpLoggingInterceptor;
 
 import static com.example.module_file.LogJsonUtils.decodeUnicode;
@@ -23,7 +25,7 @@ public class HttpLogger implements HttpLoggingInterceptor.Logger {
     mMessage.append(message.concat("\n"));
     // 响应结束，打印整条日志
     if (message.startsWith("<-- END HTTP")) {
-      LoggerBeautifulUtil.d(mMessage.toString());
+      Logger.d(mMessage.toString());
     }
   }
 

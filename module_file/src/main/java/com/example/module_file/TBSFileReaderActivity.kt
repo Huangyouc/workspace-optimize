@@ -91,7 +91,6 @@ class TBSFileReaderActivity : Activity(),TbsReaderView.ReaderCallback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.tbsfilereaderactivity)
         // 初始化Looger工具
-        LoggerBeautifulUtil.init(BuildConfig.DEBUG)
         initView()
         initData()
         initOrientationListener()
