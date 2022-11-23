@@ -1,16 +1,24 @@
 package com.example.module_file;
 
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
 
+import com.example.module_base.AppManager;
 import com.example.module_base.fileutil.FileUtil;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.security.SecureRandom;
 import java.security.cert.X509Certificate;
 import java.util.concurrent.TimeUnit;
@@ -37,19 +45,19 @@ public class DownloadFileUtils {
   }
 
   public static void download(final File file, String uri, final OnDownloadListener downloadStatusListener, boolean contentIsStream) {
-        download(file, uri, 0, 0, downloadStatusListener, contentIsStream);
+        download(file, "",uri, 0, 0, downloadStatusListener, contentIsStream);
 
     }
 
-  public static void download(final File file, final String url, int timeout, int retryTimes, final OnDownloadListener listener) {
-        download(file, url, timeout, retryTimes, listener, false);
+  public static void download(final File file, final String tmpFileName,final String url, int timeout, int retryTimes, final OnDownloadListener listener) {
+        download(file, tmpFileName,url, timeout, retryTimes, listener, false);
     }  /**
    * @param url      下载连接
    * @param file     储存下载文件的SDCard目录
    * @param listener 下载监听
    *@param contentIsStream 是否是以流的形式下载
      */
-  public static void download(final File file, final String url, int timeout, int retryTimes,
+  public static void download(final File file, final String tmpFileName,final String url, int timeout, int retryTimes,
       final OnDownloadListener listener, boolean contentIsStream) {
     if (retryTimes == 0)
       retryTimes = 1;
@@ -143,40 +151,87 @@ public class DownloadFileUtils {
 
         @Override
         public void onResponse(Call call, Response response) throws IOException {
-          InputStream is = null;
-          byte[] buf = new byte[2048];
-          int len = 0;
-          FileOutputStream fos = null;
-          // 储存下载文件的目录
-          try {
-            is = response.body().byteStream();
-            // long total = response.body().contentLength();
-            fos = new FileOutputStream(file);
-            // long sum = 0;
-            while ((len = is.read(buf)) != -1) {
-              fos.write(buf, 0, len);
-              // sum += len;
-              // int progress = (int) (sum * 1.0f / total * 100);
-              // LogDebugger.error("下载进度",""+progress);
-              // 下载中
+
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+
+                InputStream is = null;
+                BufferedOutputStream bos =null;
+                byte[] buf = new byte[2048];
+                int len = 0;
+                // 储存下载文件的目录
+                try {
+                    ContentValues values = new ContentValues();
+                    values.put(MediaStore.MediaColumns.DISPLAY_NAME, tmpFileName);
+                    values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DOWNLOADS);
+
+                    ContentResolver contentResolver = AppManager.getInstance().getTopActivity().getContentResolver();
+                    Uri uri = contentResolver.insert(MediaStore.Downloads.EXTERNAL_CONTENT_URI, values);
+
+                    if(uri!=null){
+                        OutputStream outputStream = contentResolver.openOutputStream(uri);
+                        bos = new BufferedOutputStream(outputStream);
+                        is = response.body().byteStream();
+                        while ((len = is.read(buf)) != -1) {
+                            bos.write(buf, 0, len);
+                        }
+                        bos.flush();
+                    }
+
+                    // 下载完成
+                    listener.onDownloadSuccess(uri.getPath());
+                } catch (Exception e) {
+                    listener.onDownloadFailed();
+                } finally {
+                    try {
+                        if (is != null)
+                            is.close();
+                    } catch (IOException e) {
+                    }
+                    try {
+                        if (bos != null)
+                            bos.close();
+                    } catch (IOException e) {
+                    }
+                }
+
+            }else{
+
+                InputStream is = null;
+                byte[] buf = new byte[2048];
+                int len = 0;
+                FileOutputStream fos = null;
+                // 储存下载文件的目录
+                try {
+                    is = response.body().byteStream();
+                    // long total = response.body().contentLength();
+                    fos = new FileOutputStream(file);
+                    // long sum = 0;
+                    while ((len = is.read(buf)) != -1) {
+                        fos.write(buf, 0, len);
+                        // sum += len;
+                        // int progress = (int) (sum * 1.0f / total * 100);
+                        // LogDebugger.error("下载进度",""+progress);
+                        // 下载中
+                    }
+                    fos.flush();
+                    // 下载完成
+                    listener.onDownloadSuccess(null);
+                } catch (Exception e) {
+                    listener.onDownloadFailed();
+                } finally {
+                    try {
+                        if (is != null)
+                            is.close();
+                    } catch (IOException e) {
+                    }
+                    try {
+                        if (fos != null)
+                            fos.close();
+                    } catch (IOException e) {
+                    }
+                }
+
             }
-            fos.flush();
-            // 下载完成
-            listener.onDownloadSuccess();
-          } catch (Exception e) {
-            listener.onDownloadFailed();
-          } finally {
-            try {
-              if (is != null)
-                is.close();
-            } catch (IOException e) {
-            }
-            try {
-              if (fos != null)
-                fos.close();
-            } catch (IOException e) {
-            }
-          }
         }
       });
     } catch (Exception e) {

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.FileReadDemoActivity">
+
+    <TextView
+        android:id="@+id/aboveQ_single_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上写入单张图片方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_imgs"
+        />
+    <TextView
+        android:id="@+id/aboveQ_imgs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上写入所有图片方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_single_img"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_single_file"
+        />
+    <TextView
+        android:id="@+id/aboveQ_single_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上写入单个文件方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_imgs"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_single_video"
+        />
+    <TextView
+        android:id="@+id/aboveQ_single_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上写入单个视频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_single_file"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_videos"
+        />
+    <TextView
+        android:id="@+id/aboveQ_videos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上写入所有视频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_single_video"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_single_audio"
+        />
+    <TextView
+        android:id="@+id/aboveQ_single_audio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上写入单个音频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_videos"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_audios"
+        />
+    <TextView
+        android:id="@+id/aboveQ_audios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上写入所有音频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_single_audio"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_single_img"
+        />
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/belowQ_single_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下写入单张图片方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_40"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_audios"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_imgs"
+        />
+    <TextView
+        android:id="@+id/belowQ_imgs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下写入所有图片方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_single_img"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_single_file"
+        />
+    <TextView
+        android:id="@+id/belowQ_single_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下写入单个文件方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_imgs"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_single_video"
+        />
+    <TextView
+        android:id="@+id/belowQ_single_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下写入单个视频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_single_file"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_videos"
+        />
+    <TextView
+        android:id="@+id/belowQ_videos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下写入所有视频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_single_video"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_single_audio"
+        />
+    <TextView
+        android:id="@+id/belowQ_single_audio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下写入单个音频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_videos"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_audios"
+        />
+    <TextView
+        android:id="@+id/belowQ_audios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下写入所有音频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_single_audio"
+        />
+</androidx.constraintlayout.widget.ConstraintLayout>

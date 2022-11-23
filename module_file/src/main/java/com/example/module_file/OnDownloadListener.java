@@ -4,7 +4,7 @@ public interface OnDownloadListener {
   /**
    * 下载成功
    */
-  void onDownloadSuccess();
+  void onDownloadSuccess(String path);
 
   /**
    * @param totalBytes 总大小

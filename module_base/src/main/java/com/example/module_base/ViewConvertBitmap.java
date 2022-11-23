@@ -33,6 +33,11 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.CustomViewTarget;
 import com.bumptech.glide.request.transition.Transition;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -363,6 +368,24 @@ public class ViewConvertBitmap {
 
     }
 
+    /**
+     * 想要将一张图片添加到手机相册，我们需要构建一个ContentValues对象，然后向这个对象中添加三个重要的数据。
+     * 一个是DISPLAY_NAME，也就是图片显示的名称，一个是MIME_TYPE，也就是图片的mime类型。
+     * 还有一个是图片存储的路径，不过这个值在Android 10和之前的系统版本中的处理方式不一样。
+     * Android 10中新增了一个RELATIVE_PATH常量，表示文件存储的相对路径，
+     * 可选值有DIRECTORY_DCIM、DIRECTORY_PICTURES、DIRECTORY_MOVIES、DIRECTORY_MUSIC等，分别表示相册、图片、电影、音乐等目录。
+     * 而在之前的系统版本中并没有RELATIVE_PATH，所以我们要使用DATA常量（已在Android 10中废弃），并拼装出一个文件存储的绝对路径才行。
+     *
+     * 有了ContentValues对象之后，接下来调用ContentResolver的insert()方法即可获得插入图片的Uri。
+     * 但仅仅获得Uri仍然是不够的，我们还需要向该Uri所对应的图片写入数据才行。
+     * 调用ContentResolver的openOutputStream()方法获得文件的输出流，然后将Bitmap对象写入到该输出流当中即可。
+     * @param bitmap
+     * @param displayName
+     * @param mimeType
+     * @param compressFormat
+     * @param context
+     * @return
+     */
     public static boolean addBitmapToAlbum(Bitmap bitmap,String displayName, String mimeType, Bitmap.CompressFormat compressFormat,Context context) {
         ContentValues values = new ContentValues();
         values.put(MediaStore.MediaColumns.DISPLAY_NAME, displayName);
@@ -413,6 +436,53 @@ public class ViewConvertBitmap {
 
         return false;
     }
+
+    /**
+     * 将网络输入流的图片存储在 sd卡
+     * @param inputStream
+     * @param displayName
+     * @param mimeType
+     */
+    public void  writeInputStreamToAlbum(InputStream inputStream , String displayName, String mimeType,Context context) {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.MediaColumns.DISPLAY_NAME, displayName);
+        values.put(MediaStore.MediaColumns.MIME_TYPE, mimeType);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_DCIM);
+        } else {
+            values.put(MediaStore.MediaColumns.DATA, Environment.getExternalStorageDirectory().getPath()+"/"+Environment.DIRECTORY_DCIM+"/"+displayName);
+        }
+        BufferedInputStream bis = new BufferedInputStream(inputStream);
+        ContentResolver contentResolver = context.getContentResolver();
+        Uri uri = contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+        if (uri != null) {
+            OutputStream outputStream = null;
+            try {
+                outputStream = contentResolver.openOutputStream(uri);
+                if (outputStream != null) {
+                    BufferedOutputStream bos = new BufferedOutputStream(outputStream);
+                    byte[] buffer = new byte[1024];
+                    int bytes = bis.read(buffer);
+                    while (bytes >= 0) {
+                        bos.write(buffer, 0 , bytes);
+                        bos.flush();
+                        bytes = bis.read(buffer);
+                    }
+                    bos.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally {
+                try {
+                    bis.close();
+                    outputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
 
     public interface BitmapDoneListener {
         void bitmapDone(Bitmap bitmap);

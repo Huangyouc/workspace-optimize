@@ -3,8 +3,8 @@
     package="com.example.module_base">
 
     <application>
-        <activity android:name=".ui.DemoActivity"></activity>
-        <!-- 适配9.0的系统 -->
+        <activity android:name=".ui.FileReadDemoActivity"></activity>
+        <activity android:name=".ui.DemoActivity" /> <!-- 适配9.0的系统 -->
         <uses-library
             android:name="org.apache.http.legacy"
             android:required="false" />

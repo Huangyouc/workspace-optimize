@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.FileReadDemoActivity">
+    <TextView
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="获取app内部存储空间的文件，不论多少系统，直接通过文件路径去拿就行"
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_single_img"
+        />
+    <TextView
+        android:id="@+id/aboveQ_single_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上获取单张图片方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_20"
+        app:layout_constraintTop_toBottomOf="@+id/top"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_imgs"
+        />
+    <TextView
+        android:id="@+id/aboveQ_imgs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上获取所有图片方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_single_img"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_single_file"
+        />
+    <TextView
+        android:id="@+id/aboveQ_single_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上获取单个文件方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_imgs"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_single_video"
+        />
+    <TextView
+        android:id="@+id/aboveQ_single_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上获取单个视频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_single_file"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_videos"
+        />
+    <TextView
+        android:id="@+id/aboveQ_videos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上获取所有视频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_single_video"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_single_audio"
+        />
+    <TextView
+        android:id="@+id/aboveQ_single_audio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上获取单个音频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_videos"
+        app:layout_constraintBottom_toTopOf="@+id/aboveQ_audios"
+        />
+    <TextView
+        android:id="@+id/aboveQ_audios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10及其以上获取所有音频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_single_audio"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_single_img"
+        />
+
+
+
+
+
+
+    <TextView
+        android:id="@+id/belowQ_single_img"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下获取单张图片方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_40"
+        app:layout_constraintTop_toBottomOf="@+id/aboveQ_audios"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_imgs"
+        />
+    <TextView
+        android:id="@+id/belowQ_imgs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下获取所有图片方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_single_img"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_single_file"
+        />
+    <TextView
+        android:id="@+id/belowQ_single_file"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下获取单个文件方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_imgs"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_single_video"
+        />
+    <TextView
+        android:id="@+id/belowQ_single_video"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下获取单个视频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_single_file"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_videos"
+        />
+    <TextView
+        android:id="@+id/belowQ_videos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下获取所有视频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_single_video"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_single_audio"
+        />
+    <TextView
+        android:id="@+id/belowQ_single_audio"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下获取单个音频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_videos"
+        app:layout_constraintBottom_toTopOf="@+id/belowQ_audios"
+        />
+    <TextView
+        android:id="@+id/belowQ_audios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="android 10以下获取所有音频方式"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_single_audio"
+        app:layout_constraintBottom_toTopOf="@+id/file_read"
+        />
+
+    <TextView
+        android:id="@+id/file_read"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="使用文件选择器"
+        android:textSize="18sp"
+        android:layout_marginTop="@dimen/dp_10"
+        app:layout_constraintTop_toBottomOf="@+id/belowQ_audios"
+        />
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="#F2f4f4">
+        <TextView
+            android:id="@+id/close_tv"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_50"
+            android:text="关闭"/>
+        <ImageView
+            android:id="@+id/show_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -18,6 +18,7 @@ import android.widget.ProgressBar
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.appcompat.widget.AppCompatImageView
+import com.example.module_base.StringUtils
 import com.example.module_base.fileutil.FileSizeUtil
 import com.example.module_base.fileutil.FileSystemUtil
 import com.example.module_base.fileutil.FileUtil
@@ -148,7 +149,7 @@ class TBSFileReaderActivity : Activity(),TbsReaderView.ReaderCallback {
                         downloadFile.createNewFile()
                     }
                     if(dataFile?.exists() == true){
-                        FileUtil.copyFile(downloadFile,dataFile)
+                        FileUtil.copyFile(dataFile,downloadFile)
                         ToastUtils.show("文件已下载至${downloadFile.path}")
                     }
                     this@TBSFileReaderActivity.sendBroadcast(
@@ -212,7 +213,7 @@ class TBSFileReaderActivity : Activity(),TbsReaderView.ReaderCallback {
         if (tmpFile.exists()) {
             tmpFile.delete()
         }
-        Thread(object : Download(tmpFile, url!!, false, true) {}).start()
+        Thread(object : Download(tmpFile,tmpFileName!!, url!!, false, true) {}).start()
         findViewById<LinearLayout>(R.id.ll_file_reader_progress).visibility = View.VISIBLE
     }
 
@@ -261,19 +262,27 @@ class TBSFileReaderActivity : Activity(),TbsReaderView.ReaderCallback {
         }
     }
 
-    fun onDownloadFinished(downFile: File?) {
+    fun onDownloadFinished(downFile: Any?) {
+        var down_file:File?=null
+        var down_Str:String?=null
+        if(downFile is File){
+            down_file = downFile
+        }else if(downFile is String){
+            down_Str = downFile
+        }
         findViewById<LinearLayout>(R.id.ll_file_reader_progress).visibility = View.INVISIBLE
-        when (downFile?.exists()) {
+        when (down_file?.exists()) {
             true -> {
                 try {
-                    downFile.renameTo(dataFile)
-                    downFile.delete()
+                    down_file.renameTo(dataFile)
+                    down_file.delete()
+                    down_Str = dataFile!!.path
                 } catch (e: Exception) {
                     e.printStackTrace()
                 }
             }
         }
-        displayFile(dataFile!!.path)
+        displayFile(down_Str!!)
     }
 
     fun onDownloadError(downFile: File?) {
@@ -346,7 +355,7 @@ class TBSFileReaderActivity : Activity(),TbsReaderView.ReaderCallback {
                 }
 
                 DOWNLOAD_FINISHED -> activity?.get()?.onDownloadFinished(
-                    msg.obj as File
+                    msg.obj
                 )
                 DOWNLOAD_PROGRESS -> try {
                     activity?.get()?.onDownloadProgress(msg.obj.toString().toInt())
@@ -376,25 +385,29 @@ class TBSFileReaderActivity : Activity(),TbsReaderView.ReaderCallback {
     open class Download : Runnable {
         private var file: File
         private var uri: String
+        private var fileName: String
         private var needProgressShow = true
         private var needErrorAlertShow = true
         private var activity:WeakReference<TBSFileReaderActivity>?=null
 
-        constructor(file: File, uri: String,act:TBSFileReaderActivity) {
+        constructor(file: File,tmpFileName: String, uri: String,act:TBSFileReaderActivity) {
             this.file = file
             this.uri = uri
+            this.fileName=tmpFileName
             cancelDownLoad = false
             activity = WeakReference<TBSFileReaderActivity>(act)
         }
 
         constructor(
             file: File,
+            tmpFileName: String,
             uri: String,
             needProgressShow: Boolean,
             needErrorAlertShow: Boolean
         ) {
             this.file = file
             this.uri = uri
+            this.fileName=tmpFileName
             this.needProgressShow = needProgressShow
             this.needErrorAlertShow = needErrorAlertShow
             cancelDownLoad = false
@@ -407,13 +420,13 @@ class TBSFileReaderActivity : Activity(),TbsReaderView.ReaderCallback {
             if (needProgressShow) {
                 activity?.get()?.sendMessage(SHOW_PROGRESS)
             }
-            DownloadFileUtils.download(file, uri, 30 * 1000, 3, object : OnDownloadListener {
-                override fun onDownloadSuccess() {
+            DownloadFileUtils.download(file,fileName, uri, 30 * 1000, 3, object : OnDownloadListener {
+                override fun onDownloadSuccess(path:String?) {
                     if (runningFlag) {
                         downloadJobFlag = true
                         activity?.get()?.sendMessage(
                             DOWNLOAD_FINISHED,
-                            file
+                            if(TextUtils.isEmpty(path))file else path
                         )
                     }
                     cancelDownLoad = false
