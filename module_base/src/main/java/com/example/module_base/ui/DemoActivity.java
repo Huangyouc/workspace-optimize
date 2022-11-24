@@ -1,5 +1,6 @@
 package com.example.module_base.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -26,13 +27,17 @@ public class DemoActivity extends BaseActivity {
                 mTv.setText(DeviceUtil.getDeviceID(DemoActivity.this));
 
             }
-        },2000);
+        },1000);
 
         mTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 hideEmptyView();
             }
+        });
+
+        findViewById(R.id.readfile_tv).setOnClickListener(v -> {
+            startActivity(new Intent(DemoActivity.this,FileReadDemoActivity.class));
         });
 
 

@@ -2,11 +2,12 @@ package com.example.module_base.ui;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
-import android.app.Activity;
+import android.Manifest;
 import android.content.ContentResolver;
+import android.content.ContentUris;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -15,21 +16,36 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.module_base.R;
+import com.geekthings.module_imagepicker.ImagePicker;
 import com.geekthings.module_imagepicker.model.ImageItem;
+import com.geekthings.module_imagepicker.ui.ImageGridActivity;
+import com.hjq.permissions.OnPermissionCallback;
+import com.hjq.permissions.XXPermissions;
 import com.hjq.toast.ToastUtils;
+import com.orhanobut.logger.Logger;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.List;
 
-/**
- * android Q以上和以下的  图片，视频，语音，文件的读取
+/**作用域存储
+ * 将应用程序更新为面向 Android 11 后，系统会忽略 requestLegacyExternalStorage 标志。
+ *
+ * android Q以上和以下的  图片，视频，语音，文件的读取。
  *
  * 参考链接：https://blog.csdn.net/qq_34681580/article/details/114338516
+ *
+ *        https://blog.csdn.net/dongxianfei/article/details/122086235
+ *
+ * 2022.11.24 文件下载后，再打开的功能，没有测试；aboveQ_single_file写的不好，不能打开具体目录下的具体文件
+ *
+ * google官方文档 https://developer.android.com/training/data-storage/shared/documents-files
  *
  */
 public class FileReadDemoActivity extends AppCompatActivity{
@@ -47,6 +63,10 @@ public class FileReadDemoActivity extends AppCompatActivity{
             MediaStore.Images.Media.HEIGHT,         //图片的高度，int型  1080
             MediaStore.Images.Media.MIME_TYPE,      //图片的类型     image/jpeg
             MediaStore.Images.Media.DATE_ADDED};
+
+//    private final String FILE_PROJECTION = new String[]{
+//            MediaStore.Images.ImageColumns.
+//    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,17 +93,22 @@ public class FileReadDemoActivity extends AppCompatActivity{
 
         TextView close_tv = findViewById(R.id.close_tv);
         ImageView show_img = findViewById(R.id.show_img);
+        LinearLayout show_ll = findViewById(R.id.show_ll);
 
 
         aboveQ_single_img.setOnClickListener(v -> {
             ContentResolver resolver = context.getContentResolver();
             String sortOrder = MediaStore.Images.Media.DATE_MODIFIED + " DESC";//根据日期降序查询
-            String name = "图片名称";//name是文件名称
-            String selection = MediaStore.Images.Media.BUCKET_DISPLAY_NAME + "='" + name + "'";   //查询条件 “显示名称为？”
+            String name = "1668591895868.jpg";//name是文件名称
+            String selection = MediaStore.Images.Media.DISPLAY_NAME + "='" + name + "'";   //查询条件 “显示名称为？”
             Cursor cursor = resolver.query(
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     IMAGE_PROJECTION,selection,null,
                     sortOrder);
+//            Cursor cursor = resolver.query(
+//                    MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//                    IMAGE_PROJECTION,null,null,
+//                    sortOrder);
             if(cursor!=null){
                 ArrayList<ImageItem> allImages = new ArrayList<>();   //获取该名称的所有图片的集合
                 while (cursor.moveToNext()){
@@ -122,7 +147,11 @@ public class FileReadDemoActivity extends AppCompatActivity{
 
 
                 if(!allImages.isEmpty()){
+                    Logger.e("allImages size = "+allImages.size());
                     ImageItem imageItem = allImages.get(0);
+                    Logger.e("uri = "+imageItem.uri);
+                    Logger.e("url = "+imageItem.path);
+                    show_ll.setVisibility(View.VISIBLE);
                     Glide.with(this).load(imageItem.uri).into(show_img);
                 }
 //                如果你没有使用Glide或其他图片加载框架，想在不借助第三方库的情况下直接将一个Uri对象解析成图片，可以使用如下代码：
@@ -141,9 +170,45 @@ public class FileReadDemoActivity extends AppCompatActivity{
         });
         aboveQ_single_file.setOnClickListener(v -> {
 
+            //获取指定字段
+//            String[] columns = new String[]{MediaStore.Files.FileColumns._ID, MediaStore.Files.FileColumns.MIME_TYPE, MediaStore.Files.FileColumns
+//                    .SIZE, MediaStore.Files.FileColumns.DATE_MODIFIED, MediaStore.Files.FileColumns.DATA};
+//            c = mContentResolver.query(MediaStore.Files.getContentUri("external"), columns, null, null, null);
+
+            ContentResolver contentResolver = context.getContentResolver();
+//            String selection = MediaStore.Files.FileColumns.DISPLAY_NAME + "='" + "2月资产配置报告.pdf" + "'";
+//            String selection = MediaStore.Files.FileColumns.DISPLAY_NAME + "='" + "VID_20220530_164927.mp4" + "'";
+//            String selection = MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME + "='" + "2月资产配置报告.pdf" + "'";
+            String sortOrder = MediaStore.Downloads.DATE_MODIFIED + " DESC";//根据日期降序查询
+//            Uri.parse("content://media/external/files"),
+            Logger.e("hyc>>>>"+MediaStore.Files.getContentUri("external"));
+            Logger.e("hyc>>>>"+MediaStore.Downloads.getContentUri("external"));
+            Cursor cursor = contentResolver.query(
+                    MediaStore.Files.getContentUri("external/download"),
+                     null,null,null,
+                    sortOrder);
+            if(cursor!=null){
+                while (cursor.moveToNext()) {
+                    long id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.MediaColumns._ID));
+//                    Uri uri = ContentUris.withAppendedId(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, id);
+                    Uri uri = ContentUris.withAppendedId(MediaStore.Files.getContentUri("external/download"), id);
+                    String fileName = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DISPLAY_NAME));
+                    String filePath = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.DATA));
+                    String bucket_name = cursor.getString(cursor.getColumnIndexOrThrow(MediaStore.Files.FileColumns.BUCKET_DISPLAY_NAME));
+
+                    Logger.e("file uri is "+uri);
+                    Logger.e("file fileName is "+fileName);
+                    Logger.e("file filePath is "+filePath);
+                    Logger.e("file bucket_name is "+bucket_name);
+                }
+                cursor.close();
+            }
+
         });
         aboveQ_single_video.setOnClickListener(v -> {
-
+            ImagePicker.getInstance().setMultiMode(false);
+            Intent intent0 = new Intent(FileReadDemoActivity.this, ImageGridActivity.class);
+            startActivityForResult(intent0, 12);
         });
         aboveQ_videos.setOnClickListener(v -> {
 
@@ -185,6 +250,7 @@ public class FileReadDemoActivity extends AppCompatActivity{
             Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
             intent.addCategory(Intent.CATEGORY_OPENABLE);
             intent.setType("*/*");
+//            txt的mimeType是 "text/plain",其他文件的则使用相对应的type,比如pdf,则传application/pdf，图片文件传image/*
             intentActivityResultLauncher.launch(intent);
 //            startActivityForResult(intent,PICK_FILE);
         });
@@ -213,6 +279,18 @@ public class FileReadDemoActivity extends AppCompatActivity{
                         }
                     }
                 });
+
+
+        XXPermissions.with(this)
+                .permission(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                .request(new OnPermissionCallback() {
+                    @Override
+                    public void onGranted(List<String> permissions, boolean all) {
+
+                    }
+                });
+
+//        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 12121);
     }
 
 
